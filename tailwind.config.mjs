@@ -9,6 +9,7 @@ export default {
     extend: {},
     colors: {
       button: "rgba(255, 255, 255, 0.44)",
+      dark: "rgba(255, 255, 255, 0.67)",
     },
   },
   plugins: [],

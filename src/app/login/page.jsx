@@ -1,20 +1,40 @@
-import Link from "next/link"
+'use client'
 
-const LoginPage = () => {
+import { useActionState, useRef } from "react"
+import Button from "../../../components/UI/Button"
+import Input from "../../../components/UI/Input"
+import { useFormState } from "react-dom"
+import { getAccount } from "../lib/action"
+
+
+
+const RegisterPage = () => {
+    const [state, formAction] = useActionState(getAccount, { message: null })
+
     return (
-        <main className="bg-[#121212] h-screen flex items-center text-center flex-col justify-between">
-            <div className="mt-[58px]">
-                <h1 className="text-[#FFF] text-[32px] font-bold mb-[26px]">Welcome UpTodo</h1>
-                <p className="text-dark max-w-[287px]">Please login to your account or create new account to continue</p>
+        <main className="h-screen bg-[#121212] px-6 ">
+            <h1 className="text-white font-bold text-[32px]" >Login</h1>
+            <form action={formAction}>
+                <div className="mt-[53px] grid gap-[25px]">
+                    <Input label={'Username'} placeholder={'Enter your username'} type={'text'} name={'username'} />
+                    <Input label={'Password'} placeholder={'• • • • • • • •'} type={'password'} name={'password'} />
+                </div>
+                <div>
+                    <button className="w-full bg-[#8687E7] rounded-md text-white  py-3 mt-[69px]" type="submit">Login</button>
+                </div>
+            </form>
+            <div className="flex items-center justify-center mt-[45px]">
+                <span className="border-[1px] border-[#979797] w-full"></span>
+                <p className="text-[#979797] px-[2px]">or</p>
+                <span className="border-[1px] border-[#979797] w-full h-[1px]"></span>
             </div>
-            <div className="text-white flex flex-col gap-7 mb-[67px]">
-                <button className='px-[138px] py-3 bg-[#8875FF] rounded-[4px] '>LOGIN</button>
-                <Link href={'/login/register'} className="border-2 py-3 border-[#8E7CFF] rounded-[4px]">
-                    <button className="">CREATE ACCOUNT</button>
-                </Link>
+            <div className="grid gap-5 mt-[29px]">
+                <Button>Login with Google</Button>
+                <Button>Login with Apple</Button>
             </div>
-        </main >
+            <p className="text-[#979797] text-center mt-[46px]">Dont have an account? <span className="text-white cursor-pointer">Register</span> </p>
+        </main>
     )
 }
 
-export default LoginPage
+export default RegisterPage

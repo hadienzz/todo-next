@@ -8,3 +8,10 @@ export const CONTENTS = [
     { image: icon2.src, title: 'Create daily routine', description: 'In Uptodo  you can create your personalized routine to stay productive', id: 'c2' },
     { image: icon3.src, title: 'Organize your tasks', description: 'You can organize your daily tasks by adding your tasks into separate categories', id: 'c3' },
 ]
+
+export const accounts = [
+    { username: 'hadienzz', password: 'h4d13Nbtk' },
+    { username: 'dienzzooo', password: 'hadienzz737' },
+    { username: 'dienzz', password: 'asdfghj' },
+
+]

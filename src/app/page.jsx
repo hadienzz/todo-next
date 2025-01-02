@@ -9,43 +9,43 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const Home = () => {
-  const router = useRouter()
-  const [slideIsEnd, setSlideIsEnd] = useState(false)
+    const router = useRouter()
+    const [slideIsEnd, setSlideIsEnd] = useState(false)
 
-  const SwiperButtonPrev = () => {
-    const swiper = useSwiper()
+    const SwiperButtonPrev = () => {
+        const swiper = useSwiper()
+        return (
+            <button onClick={() => swiper.slidePrev()} className='text-button'>Back</button>
+        )
+    }
+
+    const SwiperButtonNext = () => {
+        const swiper = useSwiper()
+        return (
+            <button onClick={() => slideIsEnd ? router.push('/start') : swiper.slideNext()} className='px-6 py-3 bg-[#8875FF] rounded-[4px]'>{!slideIsEnd ? 'Next' : 'Get Started'}</button>
+        )
+    }
+
     return (
-      <button onClick={() => swiper.slidePrev()} className='text-button'>Back</button>
-    )
-  }
+        <>
+            <main className='h-screen bg-[#121212] px-6 text-[white] pt-4'>
+                <Swiper onSlideChange={(swiper) => setSlideIsEnd(swiper.isEnd)} >
+                    {CONTENTS.map((content) => (
+                        <SwiperSlide key={content.id} pagination={{ clickable: true }}>
+                            <Card {...content} />
 
-  const SwiperButtonNext = () => {
-    const swiper = useSwiper()
-    return (
-      <button onClick={() => slideIsEnd ? router.push('/login') : swiper.slideNext()} className='px-6 py-3 bg-[#8875FF] rounded-[4px]'>{!slideIsEnd ? 'Next' : 'Get Started'}</button>
-    )
-  }
+                        </SwiperSlide>))}
 
-  return (
-    <>
-      <main className='h-screen bg-[#121212] px-6 text-[white] pt-4'>
-        <Swiper onSlideChange={(swiper) => setSlideIsEnd(swiper.isEnd)} >
-          {CONTENTS.map((content) => (
-            <SwiperSlide key={content.id} pagination={{ clickable: true }}>
-              <Card {...content} />
+                    <div className='flex justify-between md:justify-around md:pt-12 pt-[107px]'>
+                        <SwiperButtonPrev />
+                        <SwiperButtonNext />
+                    </div>
 
-            </SwiperSlide>))}
+                </Swiper>
+            </main >
 
-          <div className='flex justify-between md:justify-around md:pt-12 pt-[107px]'>
-            <SwiperButtonPrev />
-            <SwiperButtonNext />
-          </div>
-
-        </Swiper>
-      </main >
-
-    </>
-  );
+        </>
+    );
 };
 
 export default Home;

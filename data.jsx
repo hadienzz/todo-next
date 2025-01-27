@@ -10,8 +10,7 @@ export const CONTENTS = [
 ]
 
 export const accounts = [
-    { username: 'hadienzz', password: 'h4d13Nbtk' },
-    { username: 'dienzzooo', password: 'hadienzz737' },
-    { username: 'dienzz', password: 'asdfghj' },
-
+    { username: 'hadienzz', password: 'h4d13Nbtk', id: 'a1' },
+    { username: 'malabarstreet3', password: 'sukasaristreet', id: 'a2' },
+    { username: 'hadienzz', password: 'hadienzz737', id: 'a3' },
 ]

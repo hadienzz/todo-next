@@ -11,7 +11,7 @@ import { signIn, signOut, useSession } from 'next-auth/react'
 
 const LoginPage = () => {
     const { data: session } = useSession()
-    console.log(session?.user)
+
     return (
         <main className="h-screen bg-[#121212] px-6 ">
             <h1 className="text-white font-bold text-[32px]" >{session ? 'You are signed in' : "You aren't signed in"}</h1>

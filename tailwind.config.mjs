@@ -11,6 +11,7 @@ export default {
       button: "rgba(255, 255, 255, 0.44)",
       dark: "rgba(255, 255, 255, 0.67)",
       white: "#FFF",
+      primaryWhite: "rgba(255, 255, 255, 0.87)",
     },
   },
   plugins: [],

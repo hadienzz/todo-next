@@ -24,12 +24,12 @@ const footerContent = [
     },
 ]
 
-const Footer = () => {
+const Footer = ({ modalHandler }) => {
     return (
         <footer className="w-screen h-[100px] absolute bottom-0 flex justify-center items-center gap-[25px] sm:gap-[30px] md:gap-[35px]  bg-[#363636] px-2">
             <FooterList {...footerContent[0]} />
             <FooterList {...footerContent[1]} />
-            <div className="rounded-full w-[64px] h-[64px] text-[32px] bg-[#8687E7] flex justify-center items-center cursor-pointer -mt-[100px]">
+            <div className="rounded-full w-[64px] h-[64px] text-[32px] bg-[#8687E7] flex justify-center items-center cursor-pointer -mt-[100px]" onClick={() => modalHandler('task')}>
                 <AddIcon />
             </div>
             <FooterList {...footerContent[2]} />

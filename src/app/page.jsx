@@ -23,7 +23,7 @@ const NavIcon = () => {
 }
 
 const App = () => {
-    const [isOpen, setIsOpen] = useState(true)
+    const [openedModal, setOpenedModal] = useState(false)
 
     const { data: session, status } = useSession()
 
@@ -37,11 +37,17 @@ const App = () => {
         return <StartingPage />
     }
 
+    const modalHandler = (type) => {
+        setOpenedModal(type)
+    }
 
+    const handleCloseModal = () => {
+        setOpenedModal(false)
+    }
 
     return (
         <>
-            {isOpen && <TaskModal />}
+            {openedModal === 'task' && <TaskModal onClose={handleCloseModal} />}
             <main className="w-screen h-screen bg-[#121212] text-white">
                 <div className="px-6 flex justify-between pt-6">
                     <NavIcon />
@@ -55,7 +61,7 @@ const App = () => {
                     <p className="font-medium">What do you want to do today?</p>
                     <p className="font-medium">Tap + to add your tasks</p>
                 </div>
-                <Footer />
+                <Footer modalHandler={modalHandler} />
             </main>
         </>
     )

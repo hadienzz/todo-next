@@ -11,4 +11,14 @@ export const getAccount = (prevState, formData) => {
     if (!selectedAccount) {
         throw new error('Failed to find your account')
     }
-} 
+}
+
+export const addTask = (previousState, formData, event) => {
+    const task = {
+        title: formData.get('title'),
+        description: formData.get('description'),
+    }
+
+    
+}
+

@@ -13,12 +13,4 @@ export const getAccount = (prevState, formData) => {
     }
 }
 
-export const addTask = (previousState, formData, event) => {
-    const task = {
-        title: formData.get('title'),
-        description: formData.get('description'),
-    }
-
-    
-}
 

@@ -49,6 +49,7 @@ const App = () => {
         <>
             {openedModal === 'task' && <TaskModal onClose={handleCloseModal} />}
             <main className="w-screen h-screen bg-[#121212] text-white">
+
                 <div className="px-6 flex justify-between pt-6">
                     <NavIcon />
                     <h1>Index</h1>
@@ -56,11 +57,13 @@ const App = () => {
                         <Image src={`${session?.user.image}`} alt={`${session?.user.name}`} width={30} height={30} className="rounded-full" />
                     </div>
                 </div>
+
                 <div className="grid justify-center mt-[86px] text-center text-primaryWhite">
                     <img src={iconHero.src} alt="Homepage Image" className="" />
                     <p className="font-medium">What do you want to do today?</p>
                     <p className="font-medium">Tap + to add your tasks</p>
                 </div>
+
                 <Footer modalHandler={modalHandler} />
             </main>
         </>

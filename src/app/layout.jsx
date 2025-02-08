@@ -1,9 +1,11 @@
 'use client'
 
+import FooterModal from '../../components/Modal/FooterModal';
 import './globals.css';
-import { SessionProvider } from 'next-auth/react'
+import { SessionProvider, useSession } from 'next-auth/react'
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <body>

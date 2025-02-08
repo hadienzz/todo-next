@@ -1,12 +1,39 @@
-import { useActionState } from "react";
+import { useState } from "react";
 import CustomModal from "../Modal/CustomModal";
 import InputModal from "../Modal/InputModal";
 import FooterModal from "../Modal/FooterModal";
-import { addTask } from "@/app/lib/action";
 
 const TaskModal = ({ onClose }) => {
+    const [error, setError] = useState(null)
+    const [tasks, setTasks] = useState({
+        task: []
+    })
 
-    const [state, formAction] = useActionState(addTask, { message: null })
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        const formData = new FormData(event.target)
+
+        const enteredTitle = formData.get('title')
+        const enteredDescription = formData.get('description')
+
+        if (!enteredTitle || !enteredDescription) {
+            setError('Failed to add data due incomplete data')
+        }
+
+        setTasks((prevState) => {
+            const newTask = {
+                id: crypto.randomUUID(),
+                title: enteredTitle,
+                description: enteredDescription
+            }
+
+            return {
+                ...prevState,
+                task: [...tasks.task, newTask]
+            }
+        })
+        event.target.reset()
+    }
 
 
     return (
@@ -18,7 +45,9 @@ const TaskModal = ({ onClose }) => {
                     <p className="cursor-pointer text-white" onClick={onClose}>X</p>
                 </div>
 
-                <form action={formAction}>
+                <form onSubmit={handleSubmit}>
+
+                    <p className="my-2 text-[#cf4343] font-medium">{error}</p>
 
                     <InputModal
                         placeholder={'What do you want to do today?'}

@@ -7,6 +7,7 @@ import iconHero from '../../public/IconHero.png'
 import Footer from "../../components/Footer/Footer"
 import { useState } from "react"
 import TaskModal from "../../components/UI/TaskModal"
+import PriorityModal from "../../components/UI/PriorityModal"
 
 const NavIcon = () => {
     return (
@@ -23,7 +24,7 @@ const NavIcon = () => {
 }
 
 const App = () => {
-    const [openedModal, setOpenedModal] = useState(false)
+    const [openedModal, setOpenedModal] = useState('task')
 
     const { data: session, status } = useSession()
 
@@ -47,10 +48,11 @@ const App = () => {
 
     return (
         <>
-            {openedModal === 'task' && <TaskModal onClose={handleCloseModal} />}
+            {openedModal === 'task' && <TaskModal onClose={handleCloseModal} modalHandler={modalHandler} />}
+            {openedModal === 'priority' && <PriorityModal onClose={handleCloseModal} />}
             <main className="w-screen h-screen bg-[#121212] text-white">
 
-                <div className="px-6 flex justify-between pt-6">
+                <div className="px-6 flex justify-between pt-6 ">
                     <NavIcon />
                     <h1>Index</h1>
                     <div className="max-w-[30px] max-h-[30px] rounded-full relative">
@@ -58,8 +60,8 @@ const App = () => {
                     </div>
                 </div>
 
-                <div className="grid justify-center mt-[86px] text-center text-primaryWhite">
-                    <img src={iconHero.src} alt="Homepage Image" className="" />
+                <div className="grid justify-center mt-[86px] text-center text-primaryWhite md:text-2xl">
+                    <img src={iconHero.src} alt="Homepage Image" className="mx-auto" />
                     <p className="font-medium">What do you want to do today?</p>
                     <p className="font-medium">Tap + to add your tasks</p>
                 </div>

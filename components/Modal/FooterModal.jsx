@@ -2,7 +2,6 @@ import timerIcon from '../../public/timer-icon.png'
 import pinIcon from '../../public/pin-icon.png'
 import priorityIcon from '../../public/priority-icon.png'
 import submitIcon from '../../public/submit-icon.png'
-import { useFormStatus } from 'react-dom'
 
 
 const materialIcon = [
@@ -25,7 +24,7 @@ const FooterModal = () => {
             <button type='submit'>
                 <img src={submitIcon.src} alt={'Submit'} className="cursor-pointer" />
             </button>
-            
+
         </div>
     )
 }

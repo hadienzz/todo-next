@@ -10,16 +10,15 @@ const authOptions = {
     ],
     callbacks: {
         async session({ session, token }) {
-            session.user.id = token.id; // Tambahkan id ke session.user
-            console.log("Session Callback:", session); // Debug session
+            session.user.id = token.id;
+            console.log("Session Callback:", session);
             return session;
         },
         async jwt({ token, account, profile }) {
-            // Simpan Google sub ID sebagai token.id
             if (account) {
-                token.id = token.sub; // Ambil sub dari token (Google ID unik pengguna)
+                token.id = token.sub;
             }
-            console.log("JWT Callback:", token); // Debug token
+            console.log("JWT Callback:", token);
             return token;
         },
     },

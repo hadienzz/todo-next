@@ -1,8 +1,17 @@
-const HeaderModal = ({ title, onClose }) => {
+import { taskContext } from "@/app/context/TaskContextProvider"
+import { useContext } from "react"
+
+const HeaderModal = ({ title }) => {
+    const {handleCloseModal} = useContext(taskContext)
+
     return (
-        <div className="flex items-center justify-between">
-            <p className="text-white">{title}</p>
-            <p className="cursor-pointer text-white" onClick={onClose}>X</p>
+        <div className="">
+            <div className="flex justify-between items-center mb-3">
+                <p className="text-white">{title}</p>
+                <p className="cursor-pointer text-white" onClick={handleCloseModal}>X</p>
+            </div>
+            <div className="border-[1px] border-[#979797]"></div>
+
         </div>
 
     )

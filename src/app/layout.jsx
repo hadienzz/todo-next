@@ -1,6 +1,7 @@
 'use client'
 
 import FooterModal from '../../components/Modal/FooterModal';
+import TaskContextProvider from './context/TaskContextProvider';
 import './globals.css';
 import { SessionProvider, useSession } from 'next-auth/react'
 
@@ -10,7 +11,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <SessionProvider>
-          {children}
+          <TaskContextProvider>
+            {children}
+          </TaskContextProvider>
         </SessionProvider>
       </body>
     </html>

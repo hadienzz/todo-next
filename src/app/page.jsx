@@ -4,10 +4,11 @@ import { useSession } from "next-auth/react"
 import StartingPage from "./pages/StartingPage"
 import Image from "next/image"
 import iconHero from '../../public/IconHero.png'
-import Footer from "../../components/Footer/Footer"
-import { useState } from "react"
+import Footer from "../../components/Footer"
+import { useContext, useState } from "react"
 import TaskModal from "../../components/UI/TaskModal"
 import PriorityModal from "../../components/UI/PriorityModal"
+import { taskContext } from "./context/TaskContextProvider"
 
 const NavIcon = () => {
     return (
@@ -24,7 +25,7 @@ const NavIcon = () => {
 }
 
 const App = () => {
-    const [openedModal, setOpenedModal] = useState('task')
+    const { openedModal, } = useContext(taskContext)
 
     const { data: session, status } = useSession()
 
@@ -38,18 +39,11 @@ const App = () => {
         return <StartingPage />
     }
 
-    const modalHandler = (type) => {
-        setOpenedModal(type)
-    }
-
-    const handleCloseModal = () => {
-        setOpenedModal(false)
-    }
 
     return (
         <>
-            {openedModal === 'task' && <TaskModal onClose={handleCloseModal} modalHandler={modalHandler} />}
-            {openedModal === 'priority' && <PriorityModal onClose={handleCloseModal} />}
+            {openedModal === 'task' && <TaskModal />}
+            {openedModal === 'priority' && <PriorityModal />}
             <main className="w-screen h-screen bg-[#121212] text-white">
 
                 <div className="px-6 flex justify-between pt-6 ">
@@ -66,7 +60,7 @@ const App = () => {
                     <p className="font-medium">Tap + to add your tasks</p>
                 </div>
 
-                <Footer modalHandler={modalHandler} />
+                <Footer />
             </main>
         </>
     )

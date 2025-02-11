@@ -8,8 +8,6 @@ import 'swiper/css';
 import { useSession } from 'next-auth/react';
 
 const StartingPage = () => {
-    const { data: session, status } = useSession()
-
     const router = useRouter()
     const [slideIsEnd, setSlideIsEnd] = useState(false)
 

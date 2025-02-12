@@ -4,10 +4,10 @@ import { useSession } from "next-auth/react"
 import StartingPage from "./pages/StartingPage"
 import Image from "next/image"
 import iconHero from '../../public/IconHero.png'
-import Footer from "../../components/Footer"
-import { useContext, useState } from "react"
-import TaskModal from "../../components/UI/TaskModal"
-import PriorityModal from "../../components/UI/PriorityModal"
+import Footer from "../../components/UI/Footer"
+import { useContext } from "react"
+import TaskModal from "../../components/Modal/TaskModal"
+import PriorityModal from "../../components/Modal/PriorityModal"
 import { taskContext } from "./context/TaskContextProvider"
 
 const NavIcon = () => {
@@ -44,6 +44,7 @@ const App = () => {
         <>
             {openedModal === 'task' && <TaskModal />}
             {openedModal === 'priority' && <PriorityModal />}
+
             <main className="w-screen h-screen bg-[#121212] text-white">
 
                 <div className="px-6 flex justify-between pt-6 ">

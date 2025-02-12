@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import CustomModal from "../Modal/CustomModal";
-import InputModal from "../Modal/InputModal";
-import FooterModal from "../Modal/FooterModal";
-import HeaderModal from "../Modal/HeaderModal";
+import CustomModal from "../UI/CustomModal";
+import InputModal from "../UI/InputModal";
+import FooterModal from "../UI/FooterModal";
+import HeaderModal from "../UI/HeaderModal";
 import { taskContext } from "@/app/context/TaskContextProvider";
 
 const TaskModal = () => {
@@ -11,9 +11,9 @@ const TaskModal = () => {
     return (
         <>
             <CustomModal>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 white sm:w-[80%] w-full h-auto py-[25px] bg-[#363636] px-6 rounded-md">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 white md:w-[40%]  w-full h-auto py-[25px] bg-[#363636] px-6 rounded-md">
 
-                    <HeaderModal  title={'Add Task'} />
+                    <HeaderModal title={'Add Task'} />
 
                     <form onSubmit={handleSubmit}>
 

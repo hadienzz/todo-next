@@ -1,6 +1,6 @@
 'use client'
 
-import FooterModal from '../../components/Modal/FooterModal';
+import FooterModal from '../../components/UI/FooterModal';
 import TaskContextProvider from './context/TaskContextProvider';
 import './globals.css';
 import { SessionProvider, useSession } from 'next-auth/react'

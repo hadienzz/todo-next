@@ -2,7 +2,7 @@ import { taskContext } from "@/app/context/TaskContextProvider"
 import { useContext } from "react"
 
 const HeaderModal = ({ title }) => {
-    const {handleCloseModal} = useContext(taskContext)
+    const { handleCloseModal } = useContext(taskContext)
 
     return (
         <div className="">

@@ -6,7 +6,7 @@ import { useContext } from "react"
 import { taskContext } from "@/app/context/TaskContextProvider"
 
 const PriorityModal = () => {
-    const { handleCloseModal } = useContext(taskContext)
+    const { handleCloseModal, handleAddTask } = useContext(taskContext)
 
     return (
         <CustomModal>
@@ -22,7 +22,7 @@ const PriorityModal = () => {
 
                 <footer className="flex items-center justify-center gap-[15px] mt-4">
                     <button className="text-[#8687E7] w-[143px] pt-3 px-6" onClick={handleCloseModal}>Cancel</button>
-                    <button className="bg-[#8687E7] w-[153px] py-3 px-6 rounded-[4px] text-white ">Save</button>
+                    <button className="bg-[#8687E7] w-[153px] py-3 px-6 rounded-[4px] text-white" onClick={handleAddTask}>Save</button>
                 </footer>
 
             </div>

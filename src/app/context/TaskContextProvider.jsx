@@ -5,7 +5,7 @@ export const taskContext = createContext({
     tasks: {},
     openedModal: false,
     priority: null,
-    handleSubmit: () => { },
+    handleTask: () => { },
     handleAddTask: () => { },
     modalHandler: () => { },
     handleCloseModal: () => { },
@@ -17,11 +17,12 @@ const TaskContextProvider = ({ children }) => {
     const [priority, setPriority] = useState(null)
     const [error, setError] = useState(null)
     const [currentTask, setCurrentTask] = useState({})
+    const [isActive, setIsActive] = useState(false)
     const [tasks, setTasks] = useState({
         task: []
     })
 
-    const handleSubmit = (event) => {
+    const handleTask = (event) => {
         event.preventDefault()
         const formData = new FormData(event.target)
 
@@ -37,11 +38,13 @@ const TaskContextProvider = ({ children }) => {
             id: crypto.randomUUID(),
             title: enteredTitle,
             description: enteredDescription,
-            priority: priority
         }
+
+        setCurrentTask(newTask)
 
         modalHandler('priority')
     }
+
 
     const modalHandler = (type) => {
         setOpenedModal(type)
@@ -49,35 +52,44 @@ const TaskContextProvider = ({ children }) => {
 
     const handleCloseModal = () => {
         setOpenedModal(false)
+        setPriority(null)
     }
 
     const handleAddPriority = (num) => {
         setPriority(num)
-
-
+        setIsActive(true)
     }
 
-    const handleAddTask = (data, callback) => {
-        setTasks((prevState) => {
-            const updatedTasks = {
-                ...prevState,
-                task: [...prevState.task, data]
-            };
+    const handleAddTask = () => {
+        const newTask = {
+            ...currentTask,
+            priority: priority
+        }
 
-            return updatedTasks;
-        });
+        if (!newTask.priority) {
+            throw new Error('Please add priority first')
+        }
+
+        setTasks((prevState) => ({
+            ...prevState,
+            task: [...prevState.task, newTask]
+        }))
+        
+        handleCloseModal()
     };
+    console.log(tasks)
 
     const contextValue = {
         openedModal,
         priority,
         error,
         tasks,
-        handleSubmit,
+        handleTask,
         modalHandler,
         handleCloseModal,
         handleAddPriority,
-        handleAddTask
+        handleAddTask,
+        isActive
     }
 
 

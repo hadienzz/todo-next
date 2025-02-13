@@ -6,7 +6,7 @@ import HeaderModal from "../UI/HeaderModal";
 import { taskContext } from "@/app/context/TaskContextProvider";
 
 const TaskModal = () => {
-    const { handleSubmit, error, tasks } = useContext(taskContext)
+    const { handleTask, error, tasks } = useContext(taskContext)
 
     return (
         <>
@@ -15,7 +15,7 @@ const TaskModal = () => {
 
                     <HeaderModal title={'Add Task'} />
 
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleTask}>
 
                         <p className="my-2 text-[#cf4343] font-medium">{error}</p>
 

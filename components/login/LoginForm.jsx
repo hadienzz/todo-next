@@ -4,7 +4,6 @@ import Input from "../UI/Input"
 
 const LoginForm = () => {
     const [state, formAction] = useActionState(getAccount, { message: null })
-    const uri = process.env.NEXT_PUBLIC_MONGODB_URI
 
     return (
         <form action={formAction}>

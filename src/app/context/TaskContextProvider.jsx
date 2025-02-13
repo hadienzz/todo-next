@@ -13,7 +13,7 @@ export const taskContext = createContext({
 })
 
 const TaskContextProvider = ({ children }) => {
-    const [openedModal, setOpenedModal] = useState(false)
+    const [openedModal, setOpenedModal] = useState('category')
     const [priority, setPriority] = useState(null)
     const [error, setError] = useState(null)
     const [currentTask, setCurrentTask] = useState({})

@@ -5,6 +5,8 @@ export const taskContext = createContext({
     tasks: {},
     openedModal: false,
     priority: null,
+    category: null,
+    handleAddCategory: () => { },
     handleTask: () => { },
     handleAddTask: () => { },
     modalHandler: () => { },
@@ -15,9 +17,9 @@ export const taskContext = createContext({
 const TaskContextProvider = ({ children }) => {
     const [openedModal, setOpenedModal] = useState('category')
     const [priority, setPriority] = useState(null)
+    const [category, setCategory] = useState(null)
     const [error, setError] = useState(null)
     const [currentTask, setCurrentTask] = useState({})
-    const [isActive, setIsActive] = useState(false)
     const [tasks, setTasks] = useState({
         task: []
     })
@@ -45,6 +47,12 @@ const TaskContextProvider = ({ children }) => {
         modalHandler('priority')
     }
 
+    const handleAddCategory = (category) => {
+        setCategory(category)
+        console.log(category)
+    }
+
+
 
     const modalHandler = (type) => {
         setOpenedModal(type)
@@ -57,7 +65,6 @@ const TaskContextProvider = ({ children }) => {
 
     const handleAddPriority = (num) => {
         setPriority(num)
-        setIsActive(true)
     }
 
     const handleAddTask = () => {
@@ -74,10 +81,9 @@ const TaskContextProvider = ({ children }) => {
             ...prevState,
             task: [...prevState.task, newTask]
         }))
-        
+
         handleCloseModal()
     };
-    console.log(tasks)
 
     const contextValue = {
         openedModal,
@@ -89,7 +95,9 @@ const TaskContextProvider = ({ children }) => {
         handleCloseModal,
         handleAddPriority,
         handleAddTask,
-        isActive
+        category,
+        handleAddCategory
+
     }
 
 

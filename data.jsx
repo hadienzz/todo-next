@@ -1,6 +1,19 @@
 import icon1 from "./public/icon-1.png";
 import icon2 from "./public/icon-2.png";
 import icon3 from "./public/icon-3.png";
+import GroceryIcon from "./components/icons/Category/GroceryIcon";
+import WorkIcon from "./components/icons/Category/WorkIcon";
+import SportIcon from "./components/icons/Category/SportIcon";
+import DesignIcon from "./components/icons/Category/DesignIcon";
+import UniversityIcon from "./components/icons/Category/UniversityIcon";
+import SocialIcon from "./components/icons/Category/SocialIcon";
+import MusicIcon from "./components/icons/Category/MusicIcon";
+import HeartIcon from "./components/icons/Category/HeartIcon";
+import MovieIcon from "./components/icons/Category/MovieIcon";
+import HomeIcon from "./components/icons/HomeIcon";
+import CreateNewIcon from "./components/icons/Category/CreateNewIcon";
+
+
 
 export const CONTENTS = [
   {
@@ -26,4 +39,16 @@ export const CONTENTS = [
   },
 ];
 
-export const CATEGORIES_CONTENT = [{ icon: "", text: "", color: "" }];
+export const CATEGORIES_CONTENT = [
+  { icon: <GroceryIcon />, categoryText: 'Grocery', color: "#CCFF80" },
+  { icon: <WorkIcon />, categoryText: 'Work', color: "#FF9680" },
+  { icon: <SportIcon />, categoryText: 'Sport', color: "#80FFFF" },
+  { icon: <DesignIcon />, categoryText: 'Design', color: "#80FFD9" },
+  { icon: <UniversityIcon />, categoryText: 'University', color: "#809CFF" },
+  { icon: <SocialIcon />, categoryText: 'Social', color: "#FF80EB" },
+  { icon: <MusicIcon />, categoryText: 'Music', color: "#FC80FF" },
+  { icon: <HeartIcon />, categoryText: 'Health', color: "#FC80FF" },
+  { icon: <MovieIcon />, categoryText: 'Movie', color: "#80D1FF" },
+  { icon: <HomeIcon />, categoryText: 'Home', color: "#FFCC80" },
+  { icon: <CreateNewIcon />, categoryText: 'Create New', color: "#80FFD1" },
+];

@@ -12,10 +12,11 @@ export const taskContext = createContext({
     modalHandler: () => { },
     handleCloseModal: () => { },
     handleAddPriority: () => { },
+    handleSelectCategory: () => { },
 })
 
 const TaskContextProvider = ({ children }) => {
-    const [openedModal, setOpenedModal] = useState('category')
+    const [openedModal, setOpenedModal] = useState(false)
     const [priority, setPriority] = useState(null)
     const [category, setCategory] = useState(null)
     const [error, setError] = useState(null)
@@ -44,15 +45,12 @@ const TaskContextProvider = ({ children }) => {
 
         setCurrentTask(newTask)
 
-        modalHandler('priority')
+        modalHandler('category')
     }
 
-    const handleAddCategory = (category) => {
+    const handleSelectCategory = (category) => {
         setCategory(category)
-        console.log(category)
     }
-
-
 
     const modalHandler = (type) => {
         setOpenedModal(type)
@@ -65,7 +63,22 @@ const TaskContextProvider = ({ children }) => {
 
     const handleAddPriority = (num) => {
         setPriority(num)
+        console.log(num)
     }
+
+    const handleAddCategory = () => {
+        const newTask = {
+            ...currentTask,
+            category: category
+        }
+
+        if (!newTask.category) {
+            throw new Error('Please add priority first')
+        }
+
+        setCurrentTask(newTask)
+        modalHandler('priority')
+    };
 
     const handleAddTask = () => {
         const newTask = {
@@ -74,16 +87,15 @@ const TaskContextProvider = ({ children }) => {
         }
 
         if (!newTask.priority) {
-            throw new Error('Please add priority first')
+            throw new Error('Please add your priority first')
         }
 
         setTasks((prevState) => ({
             ...prevState,
             task: [...prevState.task, newTask]
         }))
-
         handleCloseModal()
-    };
+    }
 
     const contextValue = {
         openedModal,
@@ -94,10 +106,10 @@ const TaskContextProvider = ({ children }) => {
         modalHandler,
         handleCloseModal,
         handleAddPriority,
-        handleAddTask,
+        handleAddCategory,
         category,
-        handleAddCategory
-
+        handleSelectCategory,
+        handleAddTask,
     }
 
 

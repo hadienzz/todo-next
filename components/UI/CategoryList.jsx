@@ -6,10 +6,10 @@ const CategoryList = ({ icon, categoryText, color }) => {
 
     return (
         <li className={`flex flex-col justify-center items-center text-white cursor-pointer ${category === categoryText ? 'border-[1px] border-white' : ''}`} onClick={() => handleSelectCategory(categoryText)}>
-            <div className={`bg-[${color}] rounded-[4px] grid place-items-center p-4 `}
+            <div className={`bg-[${color}] rounded-[4px] grid place-items-center p-4  `}
                 style={{ backgroundColor: color }}
             >
-                {icon}
+                <img src={icon} alt={categoryText} />
             </div>
             <p className="mt-2">{categoryText}</p>
         </li>

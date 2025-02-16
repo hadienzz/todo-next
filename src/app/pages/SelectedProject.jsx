@@ -20,7 +20,7 @@ const SelectedProject = ({ image }) => {
                 <ArrowIcon />
             </div>
 
-            <div className="">
+            <div className="grid gap-4">
                 {tasks.task.map((item, idx) => (
                     <TaskList  {...item} key={idx} />
                 ))}

@@ -38,11 +38,9 @@ const NavIcon = () => {
 
 
 
-const Header = ({ image, title, username }) => {
-    const { data: session } = useSession()
-
+const Header = ({ image, title }) => {
     return (
-        <div className="px-6 flex justify-between pt-6 ">
+        <div className=" flex justify-between pt-6 mb-6 ">
             <NavIcon />
             <h1>{title}</h1>
             <div className="max-w-[30px] max-h-[30px] rounded-full relative">

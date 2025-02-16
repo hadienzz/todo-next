@@ -5,7 +5,7 @@ import iconHero from "../../../public/IconHero.png";
 
 const NoProjectsSelected = ({ image }) => {
     return (
-        <main className="w-screen h-screen bg-[#121212] text-white">
+        <main className="px-3 h-screen bg-[#121212] text-white relative">
 
             <Header title={'Index'} image={image} />
 

@@ -15,7 +15,8 @@ const SelectedProject = ({ image }) => {
 
             <SearchTask />
 
-            <div className="inline-flex px-[10px] py-[5px]  gap-[10px] rounded-md items-center bg-[rgba(255,255,255,0.21)] cursor-pointer my-5  ">
+
+            <div className="inline-flex px-[10px] py-[5px] gap-[10px] rounded-md items-center bg-[rgba(255,255,255,0.21)] cursor-pointer my-5  ">
                 <p>Today</p>
                 <ArrowIcon />
             </div>

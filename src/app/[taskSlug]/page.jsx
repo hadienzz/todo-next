@@ -3,14 +3,12 @@
 import { use, useContext } from "react";
 import { taskContext } from "../context/TaskContextProvider";
 import TaskHeader from "../../../components/Header.jsx/TaskHedaer";
-import { useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 import timerIcon from "../../../public/timer-icon.png";
 import pinIcon from "../../../public/pin-icon.png";
 import priorityIcon from "../../../public/priority-icon.png";
 import hierarchyIcon from "../../../public/hierarchy-icon.png";
 import trashIcon from "../../../public/trash-icon.png";
-import Head from "next/head";
-import universityIcon from "../../../public/university-icon.png";
 import { CATEGORIES_CONTENT } from "../../../data";
 import TaskDetailInfo from "../../../components/UI/TaskDetailInfo";
 
@@ -49,11 +47,14 @@ const TaskDetail = ({ params }) => {
   const { tasks, handleDeleteTask } = useContext(taskContext);
 
   const task = tasks.task.find((item) => item.id === taskSlug);
-  const selectedCategory = CATEGORIES_CONTENT.find(
-    (item) => item.categoryText === task.category
-  );
 
-  if (!task) return <p>Error</p>;
+  if (!task) {
+    notFound();
+  }
+
+  const selectedCategory = CATEGORIES_CONTENT.find(
+    (item) => item.categoryText === task?.category
+  );
 
   return (
     <>
@@ -95,7 +96,12 @@ const TaskDetail = ({ params }) => {
             title={"Sub - Task :"}
             description={"Add Sub - Task"}
           />
-          <TaskDetailInfo icon={trashIcon} title={"Delete Task"} onClick={() => handleDeleteTask(task.id)} deleteTask />
+          <TaskDetailInfo
+            icon={trashIcon}
+            title={"Delete Task"}
+            onClick={() => handleDeleteTask(task.id)}
+            deleteTask
+          />
         </div>
       </main>
     </>

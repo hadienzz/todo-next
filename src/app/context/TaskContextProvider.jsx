@@ -27,6 +27,8 @@ const TaskContextProvider = ({ children }) => {
     task: [],
   });
 
+  const router = useRouter();
+
   const handleTask = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -65,13 +67,13 @@ const TaskContextProvider = ({ children }) => {
 
   const handleAddPriority = (num) => {
     setPriority(num);
-    console.log(num);
   };
 
   const handleAddCategory = () => {
     const newTask = {
       ...currentTask,
       category: category,
+      completed: false,
     };
 
     if (!newTask.category) {
@@ -106,6 +108,8 @@ const TaskContextProvider = ({ children }) => {
         task: prevState.task.filter((item) => item.id !== id),
       };
     });
+
+    router.back();
   };
 
   const contextValue = {

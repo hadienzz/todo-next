@@ -13,7 +13,6 @@ import SelectedProject from "./pages/SelectedProject";
 const App = () => {
   const { openedModal, tasks } = useContext(taskContext);
 
-
   const { data: session, status } = useSession();
 
   if (status === "loading") {
@@ -23,8 +22,6 @@ const App = () => {
   if (!session) {
     return <StartingPage />;
   }
-
-
 
   return (
     <>

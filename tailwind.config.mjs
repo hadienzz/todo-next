@@ -12,6 +12,7 @@ export default {
       dark: "rgba(255, 255, 255, 0.67)",
       white: "#FFF",
       primaryWhite: "rgba(255, 255, 255, 0.87)",
+      red: 'oklch(0.505, 0.213, 27.518)'
     },
   },
   plugins: [],

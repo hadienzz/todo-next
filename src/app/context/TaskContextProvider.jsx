@@ -7,14 +7,16 @@ export const taskContext = createContext({
   openedModal: false,
   priority: null,
   category: null,
-  handleAddCategory: () => {},
-  handleTask: () => {},
-  handleAddTask: () => {},
-  modalHandler: () => {},
-  handleCloseModal: () => {},
-  handleAddPriority: () => {},
-  handleSelectCategory: () => {},
-  handleDeleteTask: () => {},
+  taskId: null,
+  handleAddCategory: () => { },
+  handleTask: () => { },
+  handleAddTask: () => { },
+  modalHandler: () => { },
+  handleCloseModal: () => { },
+  handleAddPriority: () => { },
+  handleSelectCategory: () => { },
+  handleDeleteTask: () => { },
+  handleCompleteTask: () => { }
 });
 
 const TaskContextProvider = ({ children }) => {
@@ -22,6 +24,7 @@ const TaskContextProvider = ({ children }) => {
   const [priority, setPriority] = useState(null);
   const [category, setCategory] = useState(null);
   const [error, setError] = useState(null);
+  const [taskId, setTaskId] = useState(null)
   const [currentTask, setCurrentTask] = useState({});
   const [tasks, setTasks] = useState({
     task: [],
@@ -45,6 +48,7 @@ const TaskContextProvider = ({ children }) => {
       id: crypto.randomUUID(),
       title: enteredTitle,
       description: enteredDescription,
+      complete: false
     };
 
     setCurrentTask(newTask);
@@ -73,7 +77,6 @@ const TaskContextProvider = ({ children }) => {
     const newTask = {
       ...currentTask,
       category: category,
-      completed: false,
     };
 
     if (!newTask.category) {
@@ -83,6 +86,7 @@ const TaskContextProvider = ({ children }) => {
     setCurrentTask(newTask);
     modalHandler("priority");
   };
+
 
   const handleAddTask = () => {
     const newTask = {
@@ -112,11 +116,29 @@ const TaskContextProvider = ({ children }) => {
     router.back();
   };
 
+  const handleCompleteTask = (id) => {
+    setTaskId(id)
+
+    const selectedTask = tasks.task.find((item) => item.id === id)
+
+    setTasks((prevState) => {
+      return {
+        ...prevState,
+        task: prevState.task.map((item) => (
+          item.id === id ? { ...item, complete: true } : item
+        ))
+      }
+    })
+  }
+
+
+
   const contextValue = {
     openedModal,
     priority,
     error,
     tasks,
+    taskId,
     handleTask,
     modalHandler,
     handleCloseModal,
@@ -126,6 +148,7 @@ const TaskContextProvider = ({ children }) => {
     handleSelectCategory,
     handleAddTask,
     handleDeleteTask,
+    handleCompleteTask
   };
 
   return (

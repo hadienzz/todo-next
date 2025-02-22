@@ -8,7 +8,7 @@ import Footer from "../../../components/UI/Footer";
 
 const SelectedProject = ({ image }) => {
   const { tasks } = useContext(taskContext);
-
+  console.log(tasks.task)
   return (
     <main className="w-screen h-screen bg-[#121212] text-white px-6">
       <Header image={image} title={"Index"} />

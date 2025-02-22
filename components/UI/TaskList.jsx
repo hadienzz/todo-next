@@ -1,25 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CATEGORIES_CONTENT } from "../../data";
 import priorityIcon from "../../public/priority-icon.png";
 import { getTask } from "@/app/lib/action";
 import { useRouter } from "next/navigation";
+import { taskContext } from "@/app/context/TaskContextProvider";
 
 const TaskList = ({ id, category, description, priority, title }) => {
+  
+
   const router = useRouter();
-  const selectedCategory = CATEGORIES_CONTENT.find(
-    (item) => item.categoryText === category
-  );
+  const selectedCategory = CATEGORIES_CONTENT.find((item) => item.categoryText === category);
+
+  const { handleCompleteTask, taskId } = useContext(taskContext)
+
 
   return (
-    <div className="bg-[#363636] py-3 flex px-[10px] rounded-md max-w-full md:mx-auto md:w-[80%] cursor-pointer">
+    <div className="bg-[#363636]  flex px-[10px] rounded-md max-w-full md:mx-auto md:w-[80%] cursor-pointer">
       <div className="flex items-center pr-3">
-        <div className="w-4 h-4 rounded-full grid place-items-center border border-white">
-          <div className="w-full h-full bg-white rounded-full"></div>
+        <div className="w-4 h-4 rounded-full grid place-items-center border border-white" onClick={() => handleCompleteTask(id)}>
+          <div className={`w-full h-full rounded-full ${taskId === id ? 'bg-white' : ''}`}></div>
         </div>
       </div>
 
       <div
-        className="flex justify-between w-full h-full truncate"
+        className="flex justify-between w-full h-full py-3 truncate"
         onClick={() => router.push(id)}
       >
         <div className=" min-w-0 flex-1 ">

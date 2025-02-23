@@ -24,7 +24,6 @@ const TaskContextProvider = ({ children }) => {
   const [priority, setPriority] = useState(null);
   const [category, setCategory] = useState(null);
   const [error, setError] = useState(null);
-  const [taskId, setTaskId] = useState(null)
   const [currentTask, setCurrentTask] = useState({});
   const [tasks, setTasks] = useState({
     task: [],
@@ -117,10 +116,6 @@ const TaskContextProvider = ({ children }) => {
   };
 
   const handleCompleteTask = (id) => {
-    setTaskId(id)
-
-    const selectedTask = tasks.task.find((item) => item.id === id)
-
     setTasks((prevState) => {
       return {
         ...prevState,
@@ -129,6 +124,7 @@ const TaskContextProvider = ({ children }) => {
         ))
       }
     })
+
   }
 
 
@@ -138,7 +134,6 @@ const TaskContextProvider = ({ children }) => {
     priority,
     error,
     tasks,
-    taskId,
     handleTask,
     modalHandler,
     handleCloseModal,

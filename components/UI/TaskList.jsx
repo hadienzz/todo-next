@@ -5,7 +5,7 @@ import { getTask } from "@/app/lib/action";
 import { useRouter } from "next/navigation";
 import { taskContext } from "@/app/context/TaskContextProvider";
 
-const TaskList = ({ id, category, description, priority, title }) => {
+const TaskList = ({ id, category, description, priority, title, complete }) => {
   
 
   const router = useRouter();
@@ -18,7 +18,7 @@ const TaskList = ({ id, category, description, priority, title }) => {
     <div className="bg-[#363636]  flex px-[10px] rounded-md max-w-full md:mx-auto md:w-[80%] cursor-pointer">
       <div className="flex items-center pr-3">
         <div className="w-4 h-4 rounded-full grid place-items-center border border-white" onClick={() => handleCompleteTask(id)}>
-          <div className={`w-full h-full rounded-full ${taskId === id ? 'bg-white' : ''}`}></div>
+          <div className={`w-full h-full rounded-full ${complete && 'bg-[white]'}`}></div>
         </div>
       </div>
 

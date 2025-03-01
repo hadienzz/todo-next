@@ -6,7 +6,7 @@ import HeaderModal from "../UI/HeaderModal";
 import { taskContext } from "@/app/context/TaskContextProvider";
 
 const TaskModal = () => {
-    const { handleTask, error, tasks } = useContext(taskContext)
+    const { handleTask, error } = useContext(taskContext)
 
     return (
         <>

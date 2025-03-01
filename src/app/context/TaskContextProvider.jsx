@@ -8,6 +8,7 @@ export const taskContext = createContext({
   priority: null,
   category: null,
   taskId: null,
+  isEditing: false,
   handleAddCategory: () => { },
   handleTask: () => { },
   handleAddTask: () => { },
@@ -16,7 +17,8 @@ export const taskContext = createContext({
   handleAddPriority: () => { },
   handleSelectCategory: () => { },
   handleDeleteTask: () => { },
-  handleCompleteTask: () => { }
+  handleCompleteTask: () => { },
+  handleEditTask: () => { }
 });
 
 const TaskContextProvider = ({ children }) => {
@@ -25,6 +27,7 @@ const TaskContextProvider = ({ children }) => {
   const [category, setCategory] = useState(null);
   const [error, setError] = useState(null);
   const [currentTask, setCurrentTask] = useState({});
+  const [isEditing, setIsEditing] = useState(false)
   const [tasks, setTasks] = useState({
     task: [],
   });
@@ -86,7 +89,6 @@ const TaskContextProvider = ({ children }) => {
     modalHandler("priority");
   };
 
-
   const handleAddTask = () => {
     const newTask = {
       ...currentTask,
@@ -111,7 +113,6 @@ const TaskContextProvider = ({ children }) => {
         task: prevState.task.filter((item) => item.id !== id),
       };
     });
-
     router.back();
   };
 
@@ -124,8 +125,13 @@ const TaskContextProvider = ({ children }) => {
         ))
       }
     })
+  }
+
+  const handleEditTask = (id) => {
+    setIsEditing((prevState) => !prevState)
 
   }
+
 
 
 
@@ -143,7 +149,9 @@ const TaskContextProvider = ({ children }) => {
     handleSelectCategory,
     handleAddTask,
     handleDeleteTask,
-    handleCompleteTask
+    handleCompleteTask,
+    handleEditTask,
+    isEditing
   };
 
   return (

@@ -1,5 +1,6 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const NavIcon = () => {
     return (
@@ -39,17 +40,19 @@ const NavIcon = () => {
 
 
 const Header = ({ image, title }) => {
+    const router = useRouter()
+
     return (
         <div className=" flex justify-between pt-6 mb-6 ">
             <NavIcon />
             <h1>{title}</h1>
-            <div className="max-w-[30px] max-h-[30px] rounded-full relative">
+            <div className="max-w-[30px] max-h-[30px] rounded-full relative" onClick={() => router.push('/login')}>
                 <Image
                     src={`${image}`}
                     alt={`username`}
                     width={30}
                     height={30}
-                    className="rounded-full"
+                    className="rounded-full cursor-pointer"
                 />
             </div>
         </div>

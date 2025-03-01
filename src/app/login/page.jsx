@@ -1,5 +1,4 @@
 "use client";
-
 import Button from "../../../components/UI/Button";
 import AppleIcon from "../../../components/icons/AppleIcon";
 import GoogleIcon from "../../../components/icons/GoogleIcon";
@@ -8,20 +7,17 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
-  const router = useRouter();
-  const { data: session } = useSession();
 
-  if (session) {
-    router.push("/");
-  }
+  const { data: session, status } = useSession();
+  const router = useRouter()
 
   return (
     <main className="h-screen bg-[#121212] px-6 ">
       <h1 className="text-white font-bold text-[32px]">
-        {session ? "You are signed in" : "You aren't signed in"}
+        <p className="" onClick={() => router.push('/')}>{session ? "go to homepage" : "You aren't signed in"}</p>
       </h1>
-      <button onClick={() => (session ? signOut() : signIn())}>
-        {session ? "sign out" : "sign in"}
+      <button onClick={() => (session ? signOut() : signIn('google'))}>
+        <p className="text-white">{session ? "sign out" : "sign in"}</p>
       </button>
       <LoginForm />
       <div className="flex items-center justify-center mt-[45px]">

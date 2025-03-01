@@ -1,9 +1,5 @@
-const uri = process.env.PUBLIC_NEXT_MONGODB_URI
-const option = {}
+const { MongoClient } = require("mongodb");
 
-let client
-let clientPromise
+const clientPromise = new MongoClient(process.env.NEXT_PUBLIC_MONGODB_URI).connect()
 
-if (!process.env.PUBLIC_NEXT_MONGODB_URI) {
-    throw new Error('Failed to add MongoDB URI')
-}
+export default clientPromise

@@ -2,7 +2,7 @@
 
 import { use, useContext } from "react";
 import { taskContext } from "../context/TaskContextProvider";
-import TaskHeader from "../../../components/Header.jsx/TaskHedaer";
+import TaskHeader from "../../../components/Header/TaskHeader";
 import { notFound } from "next/navigation";
 import timerIcon from "../../../public/timer-icon.png";
 import pinIcon from "../../../public/pin-icon.png";
@@ -11,10 +11,12 @@ import hierarchyIcon from "../../../public/hierarchy-icon.png";
 import trashIcon from "../../../public/trash-icon.png";
 import { CATEGORIES_CONTENT } from "../../../data";
 import TaskDetailInfo from "../../../components/UI/TaskDetailInfo";
+import EditTaskModal from "../../../components/Modal/EditTaskModal";
+import DeleteTaskModal from "../../../components/Modal/DeleteTaskModal";
 
-const EditIcon = () => {
+const EditIcon = ({ ...props }) => {
   return (
-    <div>
+    <div {...props}>
       <svg
         height="24"
         width="24"
@@ -44,10 +46,9 @@ const EditIcon = () => {
 
 const TaskDetail = ({ params }) => {
   const { taskSlug } = use(params);
-  const { tasks, handleDeleteTask } = useContext(taskContext);
+  const { tasks, modalHandler, openedModal } = useContext(taskContext);
 
   const task = tasks.task.find((item) => item.id === taskSlug);
-
   if (!task) {
     notFound();
   }
@@ -58,11 +59,13 @@ const TaskDetail = ({ params }) => {
 
   return (
     <>
+      {openedModal === 'edit' && <EditTaskModal title={task.title} description={task.description} />}
+      {openedModal === 'delete' && <DeleteTaskModal title={task.title} id={task.id} />}
       <main className="w-screen h-screen bg-[#121212] px-7 pt-[15px]">
         <TaskHeader />
 
         <div className=" flex mt-[30px] cursor-pointer justify-between items-center ">
-          <div className="flex  w-full">
+          <div className="flex w-full">
             <div className="flex items-center ">
               <div className="w-4 h-4 rounded-full border border-white "></div>
             </div>
@@ -71,7 +74,7 @@ const TaskDetail = ({ params }) => {
               <p className="text-[#AFAFAF] text-base ">{task.description}</p>
             </div>
           </div>
-          <EditIcon />
+          <EditIcon onClick={() => modalHandler('edit')} />
         </div>
         <div className="w-full mt-[38px] grid gap-4 ">
           <TaskDetailInfo
@@ -88,7 +91,6 @@ const TaskDetail = ({ params }) => {
           <TaskDetailInfo
             icon={priorityIcon}
             title={"Task Priority :"}
-            categoryIcon={selectedCategory.icon}
             description={task.priority}
           />
           <TaskDetailInfo
@@ -99,7 +101,7 @@ const TaskDetail = ({ params }) => {
           <TaskDetailInfo
             icon={trashIcon}
             title={"Delete Task"}
-            onClick={() => handleDeleteTask(task.id)}
+            onClick={() => modalHandler('delete')}
             deleteTask
           />
         </div>

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Header from "../../../components/Header.jsx/Header";
+import Header from "../../../components/Header/Header";
 import SearchTask from "../../../components/UI/SearchTask";
 import ArrowIcon from "../../../components/icons/ArrowIcon";
 import { taskContext } from "../context/TaskContextProvider";
@@ -17,7 +17,6 @@ const SelectedProject = ({ image }) => {
 
       <div className="inline-flex items-center gap-2 my-5 bg-[rgba(255,255,255,0.21)] px-2 rounded-md cursor-pointer">
         <p className="  py-1 bg-gray-700 rounded-md ">Today</p>
-
         <ArrowIcon />
       </div>
 
@@ -29,7 +28,6 @@ const SelectedProject = ({ image }) => {
 
       <div className="inline-flex items-center gap-2 my-5 bg-[rgba(255,255,255,0.21)] px-2 rounded-md cursor-pointer">
         <p className="  py-1 bg-gray-700 rounded-md ">Completed</p>
-
         <ArrowIcon />
       </div>
 

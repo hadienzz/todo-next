@@ -6,13 +6,10 @@ import { useRouter } from "next/navigation";
 import { taskContext } from "@/app/context/TaskContextProvider";
 
 const TaskList = ({ id, category, description, priority, title, complete }) => {
-  
-
   const router = useRouter();
   const selectedCategory = CATEGORIES_CONTENT.find((item) => item.categoryText === category);
 
-  const { handleCompleteTask, taskId } = useContext(taskContext)
-
+  const { handleCompleteTask } = useContext(taskContext)
 
   return (
     <div className="bg-[#363636]  flex px-[10px] rounded-md max-w-full md:mx-auto md:w-[80%] cursor-pointer">

@@ -1,4 +1,4 @@
-import Header from "../../../components/Header.jsx/Header"
+import Header from "../../../components/Header/Header"
 import Footer from "../../../components/UI/Footer";
 import iconHero from "../../../public/IconHero.png";
 

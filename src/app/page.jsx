@@ -7,7 +7,7 @@ import TaskModal from "../../components/Modal/TaskModal";
 import PriorityModal from "../../components/Modal/PriorityModal";
 import { taskContext } from "./context/TaskContextProvider";
 import CategoryModal from "../../components/Modal/CategoryModal";
-import NoProjectsSelected from "./pages/NoProjectsSelected ";
+import NoProjectsSelected from "./pages/NoProjectsSelected";
 import SelectedProject from "./pages/SelectedProject";
 
 const App = () => {
@@ -22,6 +22,7 @@ const App = () => {
   if (!session) {
     return <StartingPage />;
   }
+
 
   return (
     <>

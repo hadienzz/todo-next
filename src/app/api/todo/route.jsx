@@ -1,12 +1,15 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/app/lib/connectDB";
 import { ObjectId } from "mongodb";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
 
 // GET - Ambil semua dokumen To-Do
 export async function GET(req) {
-  const { db } = await connectDB();
-  const todos = await db.collection("todos").find({}).toArray();
-  return NextResponse.json(todos);
+  const { db } = await connectDB()
+
+  const todo = await db.collection('todo').find({}).toArray()
+  return NextResponse.json(todo)
 }
 
 // POST - Buat To-Do baru

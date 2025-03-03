@@ -4,7 +4,7 @@ const uri = process.env.NEXT_PUBLIC_MONGODB_URI; // pastikan ada di .env.local
 let client;
 let clientPromise;
 
-if (!process.env.NEXT_PUBLIC_MONGODB_URI) {
+if (!uri) {
   throw new Error("Please add your MongoDB URI to .env.local");
 }
 

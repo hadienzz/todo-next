@@ -1,3 +1,4 @@
+import { connectDB } from "@/app/lib/connectDB";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google"; // Add any provider you'd like
 

@@ -4,22 +4,21 @@ import { useRouter } from "next/navigation";
 const { createContext, useState } = require("react");
 
 export const taskContext = createContext({
-  tasks: {},
   openedModal: false,
   priority: null,
   category: null,
   taskId: null,
   isEditing: false,
-  handleAddCategory: () => {},
-  handleTask: () => {},
-  handleAddTask: () => {},
-  modalHandler: () => {},
-  handleCloseModal: () => {},
-  handleAddPriority: () => {},
-  handleSelectCategory: () => {},
-  handleDeleteTask: () => {},
-  handleCompleteTask: () => {},
-  handleEditTask: () => {},
+  handleAddCategory: () => { },
+  handleTask: () => { },
+  handleAddTask: () => { },
+  modalHandler: () => { },
+  handleCloseModal: () => { },
+  handleAddPriority: () => { },
+  handleSelectCategory: () => { },
+  handleDeleteTask: () => { },
+  handleCompleteTask: () => { },
+  handleEditTask: () => { },
 });
 
 const TaskContextProvider = ({ children }) => {
@@ -29,9 +28,6 @@ const TaskContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [currentTask, setCurrentTask] = useState({});
   const [isEditing, setIsEditing] = useState(false);
-  const [tasks, setTasks] = useState({
-    task: [],
-  });
   const { data: session } = useSession();
 
   const router = useRouter();
@@ -50,7 +46,6 @@ const TaskContextProvider = ({ children }) => {
 
     const newTask = {
       userId: session?.user?.id,
-      id: crypto.randomUUID(),
       title: enteredTitle,
       description: enteredDescription,
       complete: false,
@@ -108,15 +103,6 @@ const TaskContextProvider = ({ children }) => {
       body: JSON.stringify(newTask),
     });
 
-    if (res.ok) {
-      setTasks((prevState) => ({
-        ...prevState,
-        task: [...prevState.task, newTask],
-      }));
-    } else {
-      console.error("Gagal menambah To-Do");
-    }
-
     handleCloseModal();
   };
 
@@ -149,7 +135,6 @@ const TaskContextProvider = ({ children }) => {
     openedModal,
     priority,
     error,
-    tasks,
     handleTask,
     modalHandler,
     handleCloseModal,

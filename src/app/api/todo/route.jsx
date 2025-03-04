@@ -15,7 +15,6 @@ export async function GET(req) {
 // POST - Buat To-Do baru
 export async function POST(req) {
   const { db } = await connectDB();
-  console.log(db);
   const data = await req.json(); // misal: { title: "Belajar Next.js", description: "CRUD dengan MongoDB" }
 
   if (!data.title) {

@@ -5,12 +5,11 @@ import { getTask } from "@/app/lib/action";
 import { useRouter } from "next/navigation";
 import { taskContext } from "@/app/context/TaskContextProvider";
 
-const TaskList = ({ id, category, description, priority, title, complete }) => {
+const TaskList = ({ _id, category, description, priority, title, complete }) => {
   const router = useRouter();
   const selectedCategory = CATEGORIES_CONTENT.find((item) => item.categoryText === category);
 
   const { handleCompleteTask } = useContext(taskContext)
-
   return (
     <div className="bg-[#363636]  flex px-[10px] rounded-md max-w-full md:mx-auto md:w-[80%] cursor-pointer">
       <div className="flex items-center pr-3">
@@ -21,7 +20,7 @@ const TaskList = ({ id, category, description, priority, title, complete }) => {
 
       <div
         className="flex justify-between w-full h-full py-3 truncate"
-        onClick={() => router.push(id)}
+        onClick={() => router.push(_id)}
       >
         <div className=" min-w-0 flex-1 ">
           <p className="text-primaryWhite truncate">{title}</p>

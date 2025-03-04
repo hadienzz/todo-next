@@ -9,33 +9,16 @@ import { taskContext } from "./context/TaskContextProvider";
 import CategoryModal from "../../components/Modal/CategoryModal";
 import NoProjectsSelected from "./pages/NoProjectsSelected";
 import SelectedProject from "./pages/SelectedProject";
+import useSWR from 'swr'
+
 
 const App = () => {
   // Semua hook dipanggil di sini, tanpa kondisi
-  const [todo, setTodos] = useState([]);
   const { data: session, status } = useSession();
   const { openedModal } = useContext(taskContext)
-
-  useEffect(() => {
-    async function fetchTodos() {
-      const res = await fetch("/api/todo", {
-        cache: "no-store",
-      });
-      if (!res.ok) {
-        console.error("Failed to fetch data");
-        return;
-      }
-      const data = await res.json();
-      setTodos(data)
-    }
-
-
-    fetchTodos();
-  }, [])
-
-  console.log(todo)
-
-  todo.filter((data) => data.id === session?.user?.id)
+  const fetcher = (url) => fetch(url).then((res) => res.json())
+  const { data: todo = [], error } = useSWR("/api/todo", fetcher);
+  const filteredData = session ? todo.filter((data) => data.userId === session.user.id) : [];
 
   if (status === "loading") {
     return <div className="w-screen h-screen bg-[#121212]">...</div>;
@@ -50,7 +33,7 @@ const App = () => {
       {openedModal === "task" && <TaskModal />}
       {openedModal === "priority" && <PriorityModal />}
       {openedModal === "category" && <CategoryModal />}
-      {<NoProjectsSelected image={session?.user.image} />}
+      {filteredData.length >= 1 ? <SelectedProject todo={filteredData} image={session?.user?.image} /> : <NoProjectsSelected image={session?.user.image} />}
     </>
   );
 };

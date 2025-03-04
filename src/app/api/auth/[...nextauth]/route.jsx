@@ -14,12 +14,12 @@ export const authOptions = {
       if (user) {
         token.id = user.id || token.sub || account?.providerAccountId;
       }
-      console.log("JWT Callback:", token);
+      // console.log("JWT Callback:", token);
       return token;
     },
     async session({ session, token }) {
       session.user.id = token.id;
-      console.log("Session Callback:", session);
+      // console.log("Session Callback:", session);
       return session;
     },
   },

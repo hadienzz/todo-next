@@ -6,9 +6,9 @@ import { taskContext } from "../context/TaskContextProvider";
 import TaskList from "../../../components/UI/TaskList";
 import Footer from "../../../components/UI/Footer";
 
-const SelectedProject = async ({ image }) => {
+const SelectedProject = ({ image, todo }) => {
   return (
-    <main className="w-screen h-screen bg-[#121212] text-white px-6">
+    <main className="w-screen h-screen bg-[#121212] text-white px-6 relative">
       <Header image={image} title={"Index"} />
 
       <SearchTask />
@@ -19,9 +19,9 @@ const SelectedProject = async ({ image }) => {
       </div>
 
       <div className="grid gap-4">
-        {tasks.task.map((item, idx) =>
-          item.complete ? null : <TaskList {...item} key={idx} />
-        )}
+        {todo.map((item, idx) => (
+          <TaskList {...item} key={idx} />
+        ))}
       </div>
 
       <div className="inline-flex items-center gap-2 my-5 bg-[rgba(255,255,255,0.21)] px-2 rounded-md cursor-pointer">
@@ -30,9 +30,9 @@ const SelectedProject = async ({ image }) => {
       </div>
 
       <div className="grid gap-4">
-        {tasks.task.map((item, idx) =>
+        {/* {tasks.task.map((item, idx) =>
           item.complete ? <TaskList {...item} key={idx} /> : null
-        )}
+        )} */}
       </div>
 
       <Footer />

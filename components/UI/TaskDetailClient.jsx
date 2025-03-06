@@ -51,7 +51,7 @@ const TaskDetailClient = ({ task }) => {
     return (
         <>
             {openedModal === 'edit' && <EditTaskModal title={task.title} description={task.description} />}
-            {openedModal === 'delete' && <DeleteTaskModal title={task.title} id={task.id} />}
+            {openedModal === 'delete' && <DeleteTaskModal title={task.title} id={task._id} />}
             <main className="w-screen h-screen bg-[#121212] px-7 pt-[15px]">
                 <TaskHeader />
 

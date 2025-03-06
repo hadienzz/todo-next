@@ -3,7 +3,7 @@ import CustomModal from "../UI/CustomModal"
 import HeaderModal from "../UI/HeaderModal"
 import { taskContext } from "@/app/context/TaskContextProvider"
 
-const EditTaskModal = ({ title, description }) => {
+const EditTaskModal = ({ title, description, id }) => {
     const { handleCloseModal } = useContext(taskContext)
 
     return (

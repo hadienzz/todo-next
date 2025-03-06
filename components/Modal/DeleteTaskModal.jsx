@@ -5,7 +5,6 @@ import { taskContext } from "@/app/context/TaskContextProvider"
 
 const DeleteTaskModal = ({ title, id }) => {
     const { handleDeleteTask, handleCloseModal } = useContext(taskContext)
-
     return (
         <CustomModal>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 white md:w-[40%]  w-4/5 h-auto py-[25px] bg-[#363636] px-6 rounded-md">

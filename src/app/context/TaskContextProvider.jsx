@@ -106,25 +106,28 @@ const TaskContextProvider = ({ children }) => {
     handleCloseModal();
   };
 
-  const handleDeleteTask = (id) => {
-    setTasks((prevState) => {
-      return {
-        ...prevState,
-        task: prevState.task.filter((item) => item.id !== id),
-      };
-    });
-    router.back();
+  const handleDeleteTask = async (id) => {
+    const res = await fetch('api/todo', {
+      method: "DELETE",
+      headers: { 'Content-Type': "application/json" },
+      body: JSON.stringify({ id })
+    })
+
+    router.back()
   };
 
-  const handleCompleteTask = (id) => {
-    setTasks((prevState) => {
-      return {
-        ...prevState,
-        task: prevState.task.map((item) =>
-          item.id === id ? { ...item, complete: true } : item
-        ),
-      };
-    });
+  const handleCompleteTask = async (id) => {
+    const res = await fetch('api/todo', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, complete: true })
+    })
+
+    if (!res.ok) {
+      throw new Error('Failed to update complete data')
+    }
+    const data = await res.json()
+    console.log('Task Compeleted', data)
   };
 
   const handleEditTask = (id) => {

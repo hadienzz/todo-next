@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/app/lib/connectDB";
 import { ObjectId } from "mongodb";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
 
 // GET - Ambil semua dokumen To-Do
 export async function GET(req) {
@@ -22,9 +20,6 @@ export async function POST(req) {
   }
 
   const newTodo = {
-    // title: data.title,
-    // description: data.description || "",
-    // completed: false,
     createdAt: new Date(),
     ...data,
   };
@@ -48,7 +43,7 @@ export async function PUT(req) {
   }
 
   const result = await db
-    .collection("todos")
+    .collection("todo")
     .updateOne({ _id: new ObjectId(id) }, { $set: updateData });
 
   return NextResponse.json(result);
@@ -66,8 +61,6 @@ export async function DELETE(req) {
     );
   }
 
-  const result = await db
-    .collection("todos")
-    .deleteOne({ _id: new ObjectId(id) });
+  const result = await db.collection("todo").deleteOne({ _id: new ObjectId(id) });
   return NextResponse.json(result);
 }

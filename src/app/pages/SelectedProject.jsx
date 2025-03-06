@@ -20,7 +20,7 @@ const SelectedProject = ({ image, todo }) => {
 
       <div className="grid gap-4">
         {todo.map((item, idx) => (
-          <TaskList {...item} key={idx} />
+          !item.complete ? <TaskList {...item} key={idx} /> : null
         ))}
       </div>
 
@@ -30,9 +30,9 @@ const SelectedProject = ({ image, todo }) => {
       </div>
 
       <div className="grid gap-4">
-        {/* {tasks.task.map((item, idx) =>
+        {todo.map((item, idx) =>
           item.complete ? <TaskList {...item} key={idx} /> : null
-        )} */}
+        )}
       </div>
 
       <Footer />

@@ -13,7 +13,7 @@ const TaskList = ({ _id, category, description, priority, title, complete }) => 
   return (
     <div className="bg-[#363636]  flex px-[10px] rounded-md max-w-full md:mx-auto md:w-[80%] cursor-pointer">
       <div className="flex items-center pr-3">
-        <div className="w-4 h-4 rounded-full grid place-items-center border border-white" onClick={() => handleCompleteTask(id)}>
+        <div className="w-4 h-4 rounded-full grid place-items-center border border-white" onClick={() => handleCompleteTask(_id)}>
           <div className={`w-full h-full rounded-full ${complete && 'bg-[white]'}`}></div>
         </div>
       </div>
